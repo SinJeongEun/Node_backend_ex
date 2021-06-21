@@ -9,6 +9,7 @@ app.listen(3000,function(){
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+app.set('veiw engine', 'ejs')
 
 //url routing
 app.get('/', function(req,res){
@@ -20,5 +21,6 @@ app.post('/email_post', function(req,res){
     //get : req.param('email')
     console.log(req.body) //객체{}로 넘어옴
     console.log(req.body.email)//abc@naver.com 만 넘어옴
-    res.send("<h1>welcom " + req.body.email + "!</h1>")
+    //res.send("<h1>welcom " + req.body.email + "!</h1>")
+    res.render('email.ejs', {'email' : req.body.email})
 });
